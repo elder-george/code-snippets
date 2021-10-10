@@ -33,3 +33,15 @@ Ways of wrapping handles/opaque pointers into RAII:
 - RAII;
 
 - deduction guides;
+
+## x_macros.cpp
+
+(Ab)using [X Macros](https://en.wikipedia.org/wiki/X_Macro) to avoid code repetition etc.
+
+### Illustrates
+
+- X Macros (two approaches);
+
+- `scanf`-as-a-regex-engine;
+
+- simple tokenizer based on these two.
