@@ -13,3 +13,23 @@ Note: this may not necessarily work well with actual internationalized text - us
 - template specialization
 
 - ridiculous syntax C++ has for functions accepting array literals.
+
+## handle_wrapper.cpp
+
+Ways of wrapping handles/opaque pointers into RAII:
+
+- simple `unique_ptr`;
+
+- somewhat smarter wrapper (which can be inherited too, for better interface!)
+
+- `scope_guard` (but see also `std::experimental::scope_exit`);
+
+### Illustrates
+
+- `unique_ptr` + custom deleter
+
+- non-copyable classes
+
+- RAII;
+
+- deduction guides;
