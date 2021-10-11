@@ -45,3 +45,17 @@ Ways of wrapping handles/opaque pointers into RAII:
 - `scanf`-as-a-regex-engine;
 
 - simple tokenizer based on these two.
+
+## string_ranges.cpp
+
+Defining custom ranges for splitting or regex-matching strings
+
+### Illustrates
+
+- Custom ranges with sentinels;
+
+- use of CRT `strpbrk` function (can be replaced with `string_view::find_first_of`);
+
+- `std::regex` and `std::regex_iterator`;
+
+- deleting a constructor accepting a temporary value;
