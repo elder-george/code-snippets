@@ -19,3 +19,15 @@ Note: The line above is handy for debugging problems, but also makes scripts som
 - `where` command;
 
 - redirecting stderr and stdout to NUL;
+
+## for_loop_flavors.cmd
+
+Examples of `for` loop use
+
+### Illustrates
+
+- arithmetic `for` (`for/l`)
+
+- use of `for` for traversing folders (`for`, `for/d`, `for/r`)
+
+- "swiss-army knife" `for/f` - iterating, processing paths, using with strings
