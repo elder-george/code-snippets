@@ -31,3 +31,17 @@ Examples of `for` loop use
 - use of `for` for traversing folders (`for`, `for/d`, `for/r`)
 
 - "swiss-army knife" `for/f` - iterating, processing paths, using with strings
+
+## vars.cmd
+
+Using variables
+
+### Illustrates
+
+- setting variables
+
+- string operations (including hack for "dictionary lookup")
+
+- indirect access (access by name)
+
+- functions, returning value and defining scope
