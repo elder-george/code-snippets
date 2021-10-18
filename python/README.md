@@ -11,3 +11,11 @@ A simple trick to convert dictionaries (including results of JSON parsing) into 
 - JSON parsing with `object_hook=` parameter;
 
 - same, but for explicit types;
+
+## context_managers.py
+
+### Illustrates
+
+- explicit implementation of the context manager protocol
+
+- implementation with decorators;
