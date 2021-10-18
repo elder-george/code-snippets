@@ -9,3 +9,5 @@ A simple trick to convert dictionaries (including results of JSON parsing) into 
 - use of `SimpleNamespace` to convert dictionary to object;
 
 - JSON parsing with `object_hook=` parameter;
+
+- same, but for explicit types;
