@@ -59,3 +59,19 @@ Defining custom ranges for splitting or regex-matching strings
 - `std::regex` and `std::regex_iterator`;
 
 - deleting a constructor accepting a temporary value;
+
+## format_win_error.h
+
+Different ways of getting description for Win32 errors.
+
+### Illustrates
+
+- use for `FormatMessage` function to allocated buffer and format message in single call;
+
+- using macros to wrap it;
+
+- wrapping pointer to buffer in `unique_ptr`;
+
+- using `_com_error` to format message from `HRESULT`, and `HRESULT_FROM_WIN32` to get `HRESULT` from Win32 error code
+;
+- (last but not least) using new standard feature - `std::system_category().message(...)`;
