@@ -45,3 +45,11 @@ Using variables
 - indirect access (access by name)
 
 - functions, returning value and defining scope
+
+## wrapping_scripts.cmd
+
+How to wrap "real" languages into a .cmd file
+
+### Illustrates
+
+- implementing it for Python, Perl, Ruby, Node.js (badly), and Powershell
