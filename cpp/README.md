@@ -75,3 +75,15 @@ Different ways of getting description for Win32 errors.
 - using `_com_error` to format message from `HRESULT`, and `HRESULT_FROM_WIN32` to get `HRESULT` from Win32 error code
 ;
 - (last but not least) using new standard feature - `std::system_category().message(...)`;
+
+## format_to_stream
+
+How to format arbitrary tuples and collections for output into `std::ostream`.
+
+### Illustrates
+
+- implementng `operator<<`
+
+- variadic templates and "mapping" types (with side-effects);
+
+- SFINAE and `std::enable_if`
