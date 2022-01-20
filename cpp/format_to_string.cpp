@@ -21,30 +21,30 @@ namespace details
     // This overload is optional: if it's not present, `strlen` is always called,
     // which is usually OK, but... Why not avoid that if length is known at compile-time?
     template<size_t N>
-    size_t str_size(const char (&)[N])
+    std::string_view to_string_view(const char (&s)[N])
     {
         // C-style arrays have terminating '\0' that we don't need.
-        return N - 1;
+        return {s, N-1};
     }
 
     // the template specification is crafted to force compiler to look at this overload
     // *after* the previous one.
     // (borrowed here https://android.googlesource.com/platform/external/qemu/+/emu-master-dev/android/android-emu-base/android/base/StringView.h#106)
     template<typename CharT, typename = std::enable_if_t<std::is_same_v<CharT, char>>>
-    size_t str_size(const CharT* const &s)
+    std::string_view to_string_view(const CharT* const &s)
     {
-        return std::char_traits<char>::length(s);
+        return s;
     }
 
     // implementation for string and string_view are trivial:
     template<typename = char>
-    size_t str_size(const std::string& s){
-        return s.size();
+    std::string_view to_string_view(const std::string& s){
+        return s;
     }
 
     template<typename = char>
-    size_t str_size(const std::string_view& s) {
-        return s.size();
+    std::string_view to_string_view(const std::string_view& s){
+        return s;
     }
 }
 
@@ -58,7 +58,7 @@ std::string concat(ArgsT&&... args)
     size_t totalSize = 0;
     template_for_each([&totalSize](auto&& arg) {
             using ArgT = std::remove_reference_t<decltype(arg)>;
-            totalSize += str_size(std::forward<ArgT>(arg));
+            totalSize += to_string_view(std::forward<ArgT>(arg)).size();
         }, std::forward<ArgsT>(args)...);
 
     std::string result;
@@ -68,7 +68,7 @@ std::string concat(ArgsT&&... args)
     // then iterate again and append each argument to the accumulator
     template_for_each([&result](auto&& arg) {
         using ArgT = std::remove_reference_t<decltype(arg)>;
-        result += std::forward<ArgT>(arg);
+        result += to_string_view(std::forward<ArgT>(arg));
     }, std::forward<ArgsT>(args)...);
 
     return result;
@@ -135,7 +135,7 @@ namespace details
     {
         if (i == N)
         {
-            return std::forward<ArgT>(arg);
+            return to_string_view(std::forward<ArgT>(arg));
         }
         return nth<N+1, ArgsT...>(i, std::forward<ArgsT>(args)...);
     }
@@ -154,9 +154,10 @@ std::string format(const std::string_view& fmt, ArgsT&&... args)
         total_length += s.size();
         if (arg_id >= 0)
         {
-            total_length += str_size(nth(arg_id, std::forward<ArgsT>(args)...));
+            total_length += nth(arg_id, std::forward<ArgsT>(args)...).size();
         }
     });
+
     std::string result;
     result.reserve(total_length);
 
@@ -172,7 +173,7 @@ std::string format(const std::string_view& fmt, ArgsT&&... args)
     return result;
 }
 
-// overriding new/delete to verify no more than one allocation per `concat` is done
+// overriding new/delete to verify no more than one allocation per `concat`/`format` is done
 #include <cstdlib>
 
 static int alloc_count = 0;
@@ -226,7 +227,7 @@ int main()
         // We want to get a string long enough for SSO not to apply.
         const char* bang = "!!!!";
         const std::string hello = "Hello"s;
-        auto s = format("- %0, %1 %2%3...", hello, "dear", "world"sv, bang);
+        auto s = format("- %0, %1 %3%2...", hello, "dear", bang, "world"sv);
 
         std::fprintf(stderr, "%s\n", s.c_str());
     }
