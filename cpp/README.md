@@ -84,9 +84,25 @@ How to format arbitrary tuples and collections for output into `std::ostream`.
 
 - implementng `operator<<`
 
-- variadic templates and "mapping" types (with side-effects);
+- variadic templates and "mapping" types (with side-effects) using fold-expressions;
 
 - SFINAE and `std::enable_if`
+
+## format_to_string
+
+- Concatenating different flavors of strings (`std::string`, `std::string_view`, C-style string, string literals) into a single string with no more than one allocation.
+
+- Formatting (similar to `QString::arg`) that replaces `%0`..`%9` markers with corresponding arguments, again, with no more than one allocation.
+
+### Illustrates
+
+- variadic templates and iterating over the types (with side-effects) using recursion;
+
+- SFINAE and making compiler distinguish `const char*` and `const char[N]`;
+
+- using `std::forward`;
+
+- replacing global `new` and `delete` operators;
 
 ## debugging
 
