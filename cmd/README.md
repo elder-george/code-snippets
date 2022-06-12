@@ -53,3 +53,15 @@ How to wrap "real" languages into a .cmd file
 ### Illustrates
 
 - implementing it for Python, Perl, Ruby, Node.js (badly), and Powershell
+
+## ansi_term.cmd
+
+Using ANSI terminal commands from `cmd`
+
+### Illustrates
+
+- a trick to save the `ESC` character to a variable (will also work with some other strings);
+
+- using ANSI terminal commands to move cursor, change text and background color, switch between text and block graphics mode;
+
+- outputting text without newline printed;
