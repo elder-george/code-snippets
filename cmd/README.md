@@ -65,3 +65,15 @@ Using ANSI terminal commands from `cmd`
 - using ANSI terminal commands to move cursor, change text and background color, switch between text and block graphics mode;
 
 - outputting text without newline printed;
+
+## dotenv.cmd
+
+Executing a command with environment read from a file
+
+### Illustrates
+
+- starting a command in a new shell;
+
+- reading a list of key-value pairs from a file;
+
+- using `/s` key of `cmd` to avoid problems with quoting;
