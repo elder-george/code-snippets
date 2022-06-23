@@ -90,9 +90,9 @@ How to format arbitrary tuples and collections for output into `std::ostream`.
 
 ## format_to_string
 
-- Concatenating different flavors of strings (`std::string`, `std::string_view`, C-style string, string literals) into a single string with no more than one allocation.
+Concatenating different flavors of strings (`std::string`, `std::string_view`, C-style string, string literals) into a single string with no more than one allocation.
 
-- Formatting (similar to `QString::arg`) that replaces `%0`..`%9` markers with corresponding arguments, again, with no more than one allocation.
+Formatting (similar to `QString::arg`) that replaces `%0`..`%9` markers with corresponding arguments, again, with no more than one allocation.
 
 ### Illustrates
 
@@ -111,3 +111,17 @@ Getting stack traces.
 ### Illustrates
 
 - use of the `backward` library for producing stack traces;
+
+## generators
+
+Creating generators (~coroutines) with macros (based on [this article](https://www.codeproject.com/Tips/29524/Generators-in-C).
+
+### Illustates
+
+- making state machines using `switch` statement;
+
+- what kind of abominable code macros allow to create;
+
+- template specialization and how to use it to "unpack" function signature;
+
+- custom iterators and ranges (see also `string_ranges`);
